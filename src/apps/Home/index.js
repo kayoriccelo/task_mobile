@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Text } from 'react-native';
 
-import { Container, TaskContainer } from '../../components';
+import { Container, TaskContainer, Image } from '../../components';
 
 
 export default function Home() {
@@ -20,6 +20,9 @@ export default function Home() {
 
     return (
         <Container>
+            <Image>
+
+            </Image>
             <TaskContainer>
                 <Text>
                     Hello Tasks
