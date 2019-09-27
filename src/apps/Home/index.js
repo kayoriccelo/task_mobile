@@ -7,7 +7,7 @@ import tomorrowImage from '../../assets/imgs/tomorrow.jpg';
 import weekImage from '../../assets/imgs/week.jpg';
 import monthImage from '../../assets/imgs/month.jpg';
 import commonStyles from '../../common/style';
-import { Container, TaskContainer, Image, } from '../../components';
+import { Container, TaskContainer, Image, Task } from '../../components';
 
 
 export default function Home(props) {
@@ -37,7 +37,42 @@ export default function Home(props) {
 
     const load = () => {
         setTasks([
-            { id: 1, description: 'teste' },
+            {
+                id: 1,
+                description: 'Fazer café',
+                estimateAt: new Date(),
+                doneAt: null
+            },
+            {
+                id: 2,
+                description: 'Tomar café',
+                estimateAt: new Date(),
+                doneAt: null
+            },
+            {
+                id: 3,
+                description: 'Estudar',
+                estimateAt: new Date(),
+                doneAt: null
+            },
+            {
+                id: 4,
+                description: 'Codificar',
+                estimateAt: new Date(),
+                doneAt: null
+            },
+            {
+                id: 4,
+                description: 'Jogar Futebol',
+                estimateAt: new Date(),
+                doneAt: null
+            },
+            {
+                id: 4,
+                description: 'Jogar Playstation',
+                estimateAt: new Date(),
+                doneAt: null
+            },
         ])
     }
 
@@ -45,13 +80,29 @@ export default function Home(props) {
         load()
     }, []);
 
+    const toggleTask = () => {
+        console.log('toggle');
+    };
+
+    const deleteTask = () => {
+        console.log('deleteoggle');
+    };
+
     return (
         <Container>
             <Image image={image} />
             <TaskContainer>
-                <Text>
-                    Hello Tasks
-                </Text>
+                <FlatList
+                    data={tasks}
+                    keyExtractor={item => `${item.id}`}
+                    renderItem={({ item }) =>
+                        <Task
+                            {...item}
+                            onToggleTask={toggleTask}
+                            onDelete={deleteTask}
+                        />
+                    }
+                />
             </TaskContainer>
             <ActionButton
                 buttonColor={styleColor}

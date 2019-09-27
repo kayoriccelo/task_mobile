@@ -1,4 +1,6 @@
+import React from 'react';
 import Swipeable from 'react-native-swipeable';
+
 import { Container } from './style';
 import Check from './Check';
 import Line from './Line';
@@ -19,7 +21,7 @@ export default function Task(props) {
                     onPress={() => props.onToggleTask(props.id)}
                 />
                 <Line
-                    description={props.desc}
+                    description={props.description}
                     date={props.estimateAt}
                     descStyle={props.doneAt !== null}
                 />

@@ -5,6 +5,7 @@ import TouchFilter from './Touchs/Filter';
 import Input from './Input';
 import Button from './Touchs/Button';
 import Link from './Touchs/Link';
+import Task from './Task';
 
 export {
     Container,
@@ -14,5 +15,6 @@ export {
     TouchFilter,
     Input,
     Button,
-    Link
+    Link,
+    Task
 };

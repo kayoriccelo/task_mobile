@@ -7,13 +7,13 @@ export const Exclude = styled.View`
     background-color: red;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: 'center';
+    align-items: center;
     ${props => props.style && props.style}
 `;
 
 export const ExcludeText = styled.Text`
     font-family: ${common.fontFamily};
     color: #FFF;
-    font-size: 20;
-    margin: 10;
+    font-size: 20px;
+    margin: 10px;
 `;
