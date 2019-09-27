@@ -2,14 +2,14 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { commonStyles } from '../../../../common/style';
+import { commonStyles } from '../../../common/style';
 
 
-export default function TouchDrawer(navigation) {
+export default function TouchFilter(showDoneTasks, toggleFilter) {
     return (
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+        <TouchableOpacity onPress={toggleFilter}>
             <Icon
-                name='bars'
+                name={showDoneTasks ? 'eye' : 'eye-slash'}
                 size={20}
                 color={commonStyles.colors.secondary}
             />

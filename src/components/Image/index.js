@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { ImageBackground, IconBar } from './style';
-import TouchDrawer from './Touchs/Drawer';
-import TouchFilter from './Touchs/Filter';
+// import TouchDrawer from '../Touchs/Drawer';
+// import TouchFilter from '../Touchs/Filter';
 import todayImage from '../../assets/imgs/today.jpg';
 import tomorrowImage from '../../assets/imgs/tomorrow.jpg';
 import weekImage from '../../assets/imgs/week.jpg';
@@ -34,14 +34,14 @@ export default function Image(props) {
 
     return (
         <ImageBackground source={image}>
-            <IconBar>
+            {/* <IconBar> */}
                 {/* <TouchDrawer>
 
                 </TouchDrawer>
                 <TouchFilter>
 
                 </TouchFilter> */}
-            </IconBar>
+            {/* </IconBar> */}
         </ImageBackground>
     );
 };

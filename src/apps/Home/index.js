@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Text } from 'react-native';
+import { Text, FlatList } from 'react-native';
 
 import { Container, TaskContainer, Image } from '../../components';
 

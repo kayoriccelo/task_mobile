@@ -1,8 +1,18 @@
 import { Container, TaskContainer } from './Containers';
 import Image from './Image';
+import TouchDrawer from './Touchs/Drawer';
+import TouchFilter from './Touchs/Filter';
+import Input from './Input';
+import Button from './Touchs/Button';
+import Link from './Touchs/Link';
 
 export {
     Container,
     TaskContainer,
-    Image
+    Image,
+    TouchDrawer,
+    TouchFilter,
+    Input,
+    Button,
+    Link
 };
