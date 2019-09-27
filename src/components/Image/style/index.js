@@ -6,7 +6,7 @@ export const ImageBackground = styled.ImageBackground`
 `;
 
 export const IconBar = styled.View`
-    margin-top: ${Platform.OS === 'ios' ? 30 : 1};
+    margin-top: ${Platform.OS === 'ios' ? 30 : 10};
     margin-horizontal: 20;
     flex-direction: row;
     justify-content: space-between;

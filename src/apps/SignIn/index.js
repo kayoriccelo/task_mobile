@@ -12,7 +12,7 @@ export default function SignIn({ navigation }) {
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
     const signIn = () => {
-        console.log('Sign In Pressionado.');
+        navigation.navigate('Home');
     };
 
     return (
@@ -37,11 +37,12 @@ export default function SignIn({ navigation }) {
                     value={values['password']}
                     onChangeText={onChange('password')}
                 />
-                <Button 
+                <Button
+                    validForm={true} 
                     label="Entrar"
                     onPress={signIn}
                 />
-                <Link 
+                <Link
                     label="Ainda não possui conta?"
                     onPress={() => navigation.navigate('SignUp')}
                 />
