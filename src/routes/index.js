@@ -1,18 +1,17 @@
 import React from 'react';
-import { createSwitchNavigator } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 import SignIn from '../apps/SignIn';
+import SignUp from '../apps/SignUp';
 import Home from '../apps/Home';
 
-const MenuMain = {
-    SignIn: {
-        name: 'Sign In',
-        screen: SignIn
-    },
-    Home: {
-        name: 'Home',
-        screen: Home
-    }
-};
+const Routes = createAppContainer(
+    createSwitchNavigator({
+        SignIn,
+        SignUp,
+        Home
+    })
+);
 
-export default createSwitchNavigator(MenuMain, { initialRouteName: 'Loading' });
+export default Routes;
+

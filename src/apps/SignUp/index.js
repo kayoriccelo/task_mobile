@@ -4,24 +4,31 @@ import { Image, Title, SubTitle, Form } from './style';
 import backgroundImage from '../../assets/imgs/login.jpg';
 import { Input, Button, Link } from '../../components';
 
-export default function SignIn({ navigation }) {
+export default function SignUp({ navigation }) {
     const [values, setValues] = useState({});
 
     const onChange = fieldName => value => setValues({ ...values, [fieldName]: value });
 
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
-    const signIn = () => {
-        console.log('Sign In Pressionado.');
+    const signUp = () => {
+        console.log('Sign Up Pressionado.');
     };
 
     return (
         <Image source={backgroundImage}>
-            <Title>Tasks</Title>
+            <Title>Task</Title>
             <Form>
                 <SubTitle>
-                    Informe seus Dados
+                    Crie a sua conta
                 </SubTitle>
+                <Input
+                    icon="user"
+                    style={styleInput}
+                    placeholder='Nome'
+                    value={values['name']}
+                    onChangeText={onChange('name')}
+                />
                 <Input
                     icon="at"
                     style={styleInput}
@@ -37,13 +44,21 @@ export default function SignIn({ navigation }) {
                     value={values['password']}
                     onChangeText={onChange('password')}
                 />
-                <Button 
-                    label="Entrar"
-                    onPress={signIn}
+                <Input
+                    icon="asterisk"
+                    secureTextEntry={true}
+                    style={styleInput}
+                    placeholder='Confirmar Senha'
+                    value={values['confirmPassword']}
+                    onChangeText={onChange('confirmPassword')}
                 />
-                <Link 
-                    label="Ainda não possui conta?"
-                    onPress={() => navigation.navigate('SignUp')}
+                <Button
+                    label="Registrar"
+                    onPress={signUp}
+                />
+                <Link
+                    label="Já possui conta?"
+                    onPress={() => navigation.navigate('SignIn')}
                 />
             </Form>
         </Image>
