@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import { Image, Title, SubTitle, Form } from './style';
 import backgroundImage from '../../assets/imgs/login.jpg';
 import { Input, Button, Link } from '../../components';
+import { authenticate } from './store';
 
-export default function SignIn({ navigation }) {
+
+export const SignIn = ({ navigation, signIn }) => {
     const [values, setValues] = useState({});
+
+    useEffect(() => {
+        AsyncStorage.getItem('access') && navigation.navigate('Home');
+    }, []);
 
     const onChange = fieldName => value => setValues({ ...values, [fieldName]: value });
 
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
-    const signIn = () => {
-        navigation.navigate('Home');
-    };
+    const signIn = () => authenticate(values['email'], values['password'], navigation);
 
     return (
         <Image source={backgroundImage}>
@@ -38,7 +45,7 @@ export default function SignIn({ navigation }) {
                     onChangeText={onChange('password')}
                 />
                 <Button
-                    validForm={true} 
+                    validForm={true}
                     label="Entrar"
                     onPress={signIn}
                 />
@@ -50,3 +57,6 @@ export default function SignIn({ navigation }) {
         </Image>
     );
 };
+
+const mapDispatchToProps = dispatch => bindActionCreators({ authenticate }, dispatch);
+export default connect(null, mapDispatchToProps)(SignIn);
