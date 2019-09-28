@@ -1,13 +1,14 @@
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import { apiNotToken } from '../../../services';
+import { apiNotToken } from '../../../services/api';
 
 export const Types = {
     AUTH: 'signin/AUTH'
 }
 
-export const authenticate = (email, password, navigation) => dispatch => {
-    apiNotToken.post('signin', { email, password })
+export const authenticate = (values, navigation) => dispatch => {
+    apiNotToken.post('signin', { email: values['email'], password: values['password'] })
         .then(res => {
             dispatch({
                 type: Types.AUTH,
@@ -17,9 +18,8 @@ export const authenticate = (email, password, navigation) => dispatch => {
             AsyncStorage.setItem('access', res.data.access);
 
             navigation.navigate('Home');
-        })
-        .catch(err => {
-
+        }, err => {
+            Alert.alert('Erro', 'Falha ao Entrar!')
         });
 };
 

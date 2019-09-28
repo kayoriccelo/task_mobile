@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -9,7 +9,7 @@ import { Input, Button, Link } from '../../components';
 import { authenticate } from './store';
 
 
-export const SignIn = ({ navigation, signIn }) => {
+export const SignIn = ({ navigation, authenticate }) => {
     const [values, setValues] = useState({});
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export const SignIn = ({ navigation, signIn }) => {
 
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
-    const signIn = () => authenticate(values['email'], values['password'], navigation);
+    const signIn = () => authenticate(values, navigation);
 
     return (
         <Image source={backgroundImage}>

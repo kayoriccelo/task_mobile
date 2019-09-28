@@ -1,9 +1,10 @@
 import axios from 'axios';
+import axios2 from 'axios';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const rota = 'http://127.0.0.1:3333'
+const rota = 'http://127.0.0.1:3030/';
 
-export const apiNotToken = axios.create({
+export const apiNotToken = axios2.create({
     baseURL: rota
 });
 

@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Image, Title, SubTitle, Form } from './style';
 import backgroundImage from '../../assets/imgs/login.jpg';
 import { Input, Button, Link } from '../../components';
+import { create } from './store';
 
-export default function SignUp({ navigation }) {
+
+export const SignUp = ({ navigation, create }) => {
     const [values, setValues] = useState({});
 
     const onChange = fieldName => value => setValues({ ...values, [fieldName]: value });
 
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
-    const signUp = () => {
-        console.log('Sign Up Pressionado.');
-    };
+    const signUp = () => create(values, navigation);
 
     return (
         <Image source={backgroundImage}>
@@ -53,6 +55,7 @@ export default function SignUp({ navigation }) {
                     onChangeText={onChange('confirmPassword')}
                 />
                 <Button
+                    validForm={true}
                     label="Registrar"
                     onPress={signUp}
                 />
@@ -64,3 +67,6 @@ export default function SignUp({ navigation }) {
         </Image>
     );
 };
+
+const mapDispatchToProps = dispatch => bindActionCreators({ create }, dispatch);
+export default connect(null, mapDispatchToProps)(SignUp);
