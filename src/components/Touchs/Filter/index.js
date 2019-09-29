@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import commonStyles from '../../../common/style';
 
 
-export default function TouchFilter(showDoneTasks, toggleFilter) {
+export default function TouchFilter({ showDoneTasks, toggleFilter }) {
     return (
         <TouchableOpacity onPress={toggleFilter}>
             <Icon

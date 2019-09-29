@@ -6,6 +6,7 @@ import Input from './Input';
 import Button from './Touchs/Button';
 import Link from './Touchs/Link';
 import Task from './Task';
+import ModalTask from './Modal';
 
 export {
     Container,
@@ -16,5 +17,6 @@ export {
     Input,
     Button,
     Link,
-    Task
+    Task,
+    ModalTask,
 };

@@ -11,11 +11,11 @@ import tomorrowImage from '../../assets/imgs/tomorrow.jpg';
 import weekImage from '../../assets/imgs/week.jpg';
 import monthImage from '../../assets/imgs/month.jpg';
 import commonStyles from '../../common/style';
-import { Container, TaskContainer, Image, Task } from '../../components';
+import { Container, TaskContainer, Image, Task, ModalTask } from '../../components';
 import { load, create, remove } from './store';
 
 
-export const Home = ({ itens, daysAhead, navigation }) => {
+export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => {
     const [tasks, setTasks] = useState([]);
     const [visibleTasks, setVisibleTasks] = useState([]);
     const [showAddTask, setShowAddTask] = useState(false);
@@ -84,6 +84,11 @@ export const Home = ({ itens, daysAhead, navigation }) => {
 
     return (
         <Container>
+            <ModalTask
+                isVisible={showAddTask}
+                onSave={addTask}
+                onCancel={() => setShowAddTask(false)}
+            />
             <Image image={design.image} toggleFilter={toggleFilter} />
             <TaskContainer>
                 <FlatList

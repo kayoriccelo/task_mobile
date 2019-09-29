@@ -18,7 +18,8 @@ export const SignIn = ({ navigation, authenticate }) => {
     useEffect(() => {
         const access = checkAuth();
 
-        access.then(res => res !== null && navigation.navigate('Home'));
+        // access.then(res => res !== null && navigation.navigate('Home'));
+        navigation.navigate('Home');
     }, []);
 
     const checkAuth = async () => {

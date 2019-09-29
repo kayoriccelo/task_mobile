@@ -1,5 +1,7 @@
-import api from '../../../services/api';
 import { Alert } from 'react-native';
+import moment from 'moment';
+
+import api from '../../../services/api';
 
 
 export const Types = {
