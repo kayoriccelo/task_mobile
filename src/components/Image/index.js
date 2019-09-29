@@ -5,14 +5,14 @@ import TouchDrawer from '../Touchs/Drawer';
 import TouchFilter from '../Touchs/Filter';
 
 
-export default function Image(props) {
+export default function Image({ image, toggleFilter }) {
     return (
-        <ImageBackground source={props.image}>
+        <ImageBackground source={image}>
             <IconBar>
                 <TouchDrawer />
                 <TouchFilter
                     showDoneTasks={true}
-                    toggleFilter={() => console.log('filter')}
+                    toggleFilter={toggleFilter}
                 />
             </IconBar>
         </ImageBackground>
