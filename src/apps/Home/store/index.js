@@ -8,11 +8,11 @@ export const Types = {
     LOAD: 'home/LOAD',
 };
 
-export const load = days => dispatch => {
-    const maxDate = moment().add({ days }).format('YYYY-MM-DD 23:59')
+export const load = value => dispatch => {
+    const maxDate = moment().add({ days: value }).format('YYYY-MM-DD 23:59')
 
     return api.get(`tasks?date=${maxDate}`)
-        .then(res => dispatch({ type: types.LOAD, payload: res.data })
+        .then(res => dispatch({ type: Types.LOAD, payload: res.data })
             , err => Alert.alert(err));
 };
 

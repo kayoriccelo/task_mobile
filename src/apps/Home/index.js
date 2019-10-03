@@ -23,7 +23,7 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
     const [design, setDesign] = useState({ style: null, image: null });
 
     useEffect(() => {
-        // loadTasks();
+        loadTasks();
         loadStyle();
     }, []);
 
