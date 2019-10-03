@@ -1,7 +1,7 @@
 import { Alert } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 
 import { apiNotToken } from '../../../services/api';
+import { setToken } from '../../../common/utils';
 
 export const Types = {
     AUTH: 'signin/AUTH'
@@ -15,9 +15,9 @@ export const authenticate = (values, navigation) => dispatch => {
                 payload: res.data
             })
 
-            AsyncStorage.setItem('access', res.data.access);
+            setToken(res.data.token);
 
-            navigation.navigate('Home');
+            navigation.navigate('Today');
         }, err => {
             Alert.alert('Erro', 'Falha ao Entrar!')
         });

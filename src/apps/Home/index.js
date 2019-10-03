@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { FlatList } from 'react-native';
+import { FlatList, Alert } from 'react-native';
 import ActionButton from 'react-native-action-button';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -23,7 +23,7 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
     const [design, setDesign] = useState({ style: null, image: null });
 
     useEffect(() => {
-        loadTasks();
+        // loadTasks();
         loadStyle();
     }, []);
 
@@ -49,7 +49,10 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
         };
     };
 
-    const loadTasks = () => load();
+    const loadTasks = () => {
+        const days = daysAhead ? daysAhead : 0;
+        load(days);
+    };
 
     const addTask = task => create(task).then(res => setShowAddTask(false));
 

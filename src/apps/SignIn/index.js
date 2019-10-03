@@ -1,34 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import AsyncStorage from '@react-native-community/async-storage';
-
-import { Alert } from 'react-native';
 
 import { Image, Title, SubTitle, Form } from './style';
 import backgroundImage from '../../assets/imgs/login.jpg';
 import { Input, Button, Link } from '../../components';
 import { authenticate } from './store';
+import { getToken } from '../../common/utils';
 
 
-export const SignIn = ({ navigation, authenticate }) => {
+export const SignIn = ({ authenticate, navigation }) => {
     const [values, setValues] = useState({});
     const styleInput = "margin-top: 10px; background-color: #FFF;";
 
     useEffect(() => {
-        const access = checkAuth();
-
-        // access.then(res => res !== null && navigation.navigate('Home'));
-        navigation.navigate('Home');
+        let token = getToken();
+        token.then(res => res && navigation.navigate('Today'));
     }, []);
-
-    const checkAuth = async () => {
-        try {
-            return await AsyncStorage.getItem('access');
-        } catch {
-            return null;
-        };
-    };
 
     const onChange = fieldName => value => setValues({ ...values, [fieldName]: value });
 

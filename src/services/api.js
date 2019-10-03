@@ -20,9 +20,9 @@ api.interceptors.request.use(
     config => {
         let access = getToken();
 
-        if (access) {
-            config.headers.common.Authorization = `Bearer ${access}`;
-        }
+        access.then(res => {
+            if (res) config.headers.common.Authorization = `Bearer ${res}`;
+        })       
 
         return config;
     },
