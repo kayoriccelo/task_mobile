@@ -16,18 +16,20 @@ export const load = value => dispatch => {
             , err => Alert.alert(err));
 };
 
-export const create = (task) => dispatch => {
-    return api.post(`tasks`, { desc: task.desc, estimateAt: task.date })
-        .then(res => dispatch(load)
+export const create = task => dispatch => {
+    return api.post(`tasks`, { description: task.desc, estimateAt: task.date })
+        .then(res => dispatch(load(0))
             , err => Alert.alert(err));
 };
 
-export const remove = () => {
-    // 
+export const remove = (id) => dispatch => {
+    return api.delete(`tasks/${id}`)
+        .then(res =>  dispatch(load(0))
+            , err => Alert.alert(err));
 };
 
 export const initialState = {
-    itens: [],
+    itens: []
 };
 
 export default function reducer(state = initialState, action) {

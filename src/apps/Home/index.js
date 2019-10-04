@@ -18,8 +18,8 @@ import { load, create, remove } from './store';
 export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => {
     const [tasks, setTasks] = useState([]);
     const [visibleTasks, setVisibleTasks] = useState([]);
-    const [showAddTask, setShowAddTask] = useState(false);
-    const [showDoneTask, setShowDoneTask] = useState(true);
+    const [showAddTasks, setShowAddTasks] = useState(false);
+    const [showDoneTasks, setShowDoneTasks] = useState(true);
     const [design, setDesign] = useState({ style: null, image: null });
 
     useEffect(() => {
@@ -54,26 +54,21 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
         load(days);
     };
 
-    const addTask = task => create(task).then(res => setShowAddTask(false));
+    const addTask = task => create(task).then(res => setShowAddTasks(false));
 
-    const removeTask = () => {
-
-    };
+    const removeTask = (id) => remove(id)
 
     const filterTasks = () => {
         let visibleTasks = null;
 
-        visibleTasks = showDoneTask ? [...tasks] : tasks.filter(task => task.doneAt === null);
+        visibleTasks = showDoneTasks ? [...tasks] : tasks.filter(task => task.doneAt === null);
 
         setVisibleTasks(visibleTasks);
     };
 
     const toggleFilter = () => {
-        // setShowDoneTask(!showDoneTasks);
-        // filterTasks();
-
-        // temporario
-        signOut();
+        setShowDoneTasks(!showDoneTasks);
+        filterTasks();
     };
 
     const signOut = () => {
@@ -88,11 +83,11 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
     return (
         <Container>
             <ModalTask
-                isVisible={showAddTask}
+                isVisible={showAddTasks}
                 onSave={addTask}
-                onCancel={() => setShowAddTask(false)}
+                onCancel={() => setShowAddTasks(false)}
             />
-            <Image image={design.image} toggleFilter={toggleFilter} />
+            <Image image={design.image} showDoneTasks={showDoneTasks} toggleFilter={toggleFilter} />
             <TaskContainer>
                 <FlatList
                     data={tasks}
@@ -108,7 +103,7 @@ export const Home = ({ load, create, remove, itens, daysAhead, navigation }) => 
             </TaskContainer>
             <ActionButton
                 buttonColor={design.style}
-                onPress={() => setShowAddTask(true)}
+                onPress={() => setShowAddTasks(true)}
             />
         </Container>
     )

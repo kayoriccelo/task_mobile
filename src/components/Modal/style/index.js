@@ -44,7 +44,7 @@ export const Input = styled.TextInput`
     border-radius: 6px;
 `;
 
-export const Date = styled.Text`
+export const Text = styled.Text`
     font-family: ${commonStyles.fontFamily};
     font-size: 20px;
     margin-left: 10px;

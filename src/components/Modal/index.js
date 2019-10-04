@@ -5,30 +5,11 @@ import {
 } from 'react-native';
 import moment from 'moment';
 
-import { Offset, Container, Header, Input, GroupButtons, TextButton } from './style';
+import { Offset, Container, Header, Input, GroupButtons, TextButton, Text } from './style';
 
 
 export default function ModalTask({ onSave, onCancel, isVisible }) {
     const [values, setValues] = useState({ desc: '', date: new Date() });
-    let datePicker = null;
-
-    useEffect(() => {
-        if (Platform.OS === 'ios') {
-            datePicker = <DatePickerIOS
-                mode='date'
-                date={values['date']}
-                onDateChange={date => setValues({ ...values, date })}
-            />
-        } else {
-            datePicker = (
-                <TouchableOpacity onPress={handleDateAndroidChanged}>
-                    <Date>
-                        {moment(values['date']).format('ddd, D [de] MMMM [de] YYYY')}
-                    </Date>
-                </TouchableOpacity>
-            );
-        };
-    }, []);
 
     const save = () => {
         if (!values['desc'].trim()) {
@@ -37,6 +18,22 @@ export default function ModalTask({ onSave, onCancel, isVisible }) {
         };
 
         onSave(values);
+    };
+
+    const renderDatePicker = _ => {
+        if (Platform.OS === 'ios') {
+            return <DatePickerIOS
+                mode='date'
+                date={values['date']}
+                onDateChange={date => setValues({ ...values, date })}
+            />
+        } else {
+            return <TouchableOpacity onPress={handleDateAndroidChanged}>
+                <Text>
+                    {moment(values['date']).format('ddd, D [de] MMMM [de] YYYY')}
+                </Text>
+            </TouchableOpacity>
+        };
     };
 
     const handleDateAndroidChanged = () => {
@@ -72,7 +69,7 @@ export default function ModalTask({ onSave, onCancel, isVisible }) {
                     onChangeText={desc => setValues({ ...values, desc })}
                     value={values['desc']}
                 />
-                {datePicker}
+                {renderDatePicker()}
                 <GroupButtons>
                     <TouchableOpacity onPress={onCancel}>
                         <TextButton>Cancelar</TextButton>
